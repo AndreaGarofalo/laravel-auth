@@ -4,7 +4,8 @@
 
 
 @section('content')
-<table class="table my-5">
+<a href="{{ route('admin.projects.create')}}" class="btn btn-small btn-success my-5"><i class="fa-solid fa-plus  me-2"></i>Add new project</a>
+<table class="table my-2">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -24,7 +25,7 @@
       <td>{{ $project->created_at }}</td>
       <td>{{ $project->updated_at }}</td>
       <td class="d-flex">
-        <a href="{{ route('admin.projects.show', $project->id)}}" class="btn btn-small btn-primary mx-2"><i class="fa-solid fa-eye"></i></a>
+        <a href="{{ route('admin.projects.show', $project->id)}}" class="btn btn-small btn-primary me-2"><i class="fa-solid fa-eye"></i></a>
         <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="delete-form">
             @csrf
             @method('DELETE')
