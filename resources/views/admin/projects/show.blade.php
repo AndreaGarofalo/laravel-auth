@@ -19,10 +19,25 @@
 <hr>
 <div class="d-flex justify-content-start my-3">
     <a href="{{ route('admin.projects.index') }}" class="btn btn-small btn-secondary"><i class="fa-solid fa-arrow-left me-2"></i>Go back</a>
-    <form class="mx-3" action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+    <form class="mx-3 delete-form" action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-small btn-danger"><i class="fa-solid fa-trash me-2"></i>Elimina</button>
     </form>
 </div>
+@endsection
+
+@section('script')
+
+<script>
+  const deleteForms = document.querySelectorAll('.delete-form');
+  deleteForms.forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const hasConfirmed = confirm('Are you certain?');
+      if(hasConfirmed) form.submit();
+    });
+  });
+</script>
+
 @endsection
