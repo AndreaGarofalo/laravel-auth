@@ -18,11 +18,12 @@
 </div>
 <hr>
 <div class="d-flex justify-content-start my-3">
-    <a href="{{ route('admin.projects.index') }}" class="btn btn-small btn-secondary"><i class="fa-solid fa-arrow-left me-2"></i>Go back</a>
-    <form class="mx-3 delete-form" action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+    <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning"><i class="fa-solid fa-pencil me-2"></i>Edit</a>
+    <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary mx-3"><i class="fa-solid fa-arrow-left me-2"></i>Go back</a>
+    <form class="delete-form" action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-small btn-danger"><i class="fa-solid fa-trash me-2"></i>Elimina</button>
+        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash me-2"></i>Elimina</button>
     </form>
 </div>
 @endsection

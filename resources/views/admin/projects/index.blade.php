@@ -25,7 +25,8 @@
       <td>{{ $project->created_at }}</td>
       <td>{{ $project->updated_at }}</td>
       <td class="d-flex">
-        <a href="{{ route('admin.projects.show', $project->id)}}" class="btn btn-small btn-primary me-2"><i class="fa-solid fa-eye"></i></a>
+        <a href="{{ route('admin.projects.show', $project->id)}}" class="btn btn-small btn-primary"><i class="fa-solid fa-eye"></i></a>
+        <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-small btn-warning mx-2 text-white"><i class="fa-solid fa-pencil "></i></a>
         <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="delete-form">
             @csrf
             @method('DELETE')
