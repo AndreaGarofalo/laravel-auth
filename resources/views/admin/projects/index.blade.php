@@ -41,18 +41,3 @@
   </tbody>
 </table>
 @endsection
-
-@section('script')
-
-<script>
-  const deleteForms = document.querySelectorAll('.delete-form');
-  deleteForms.forEach(form => {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const hasConfirmed = confirm('Are you certain?');
-      if(hasConfirmed) form.submit();
-    });
-  });
-</script>
-
-@endsection
