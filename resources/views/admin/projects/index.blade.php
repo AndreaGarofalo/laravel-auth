@@ -23,8 +23,13 @@
       <td>{{ $project->slug }}</td>
       <td>{{ $project->created_at }}</td>
       <td>{{ $project->updated_at }}</td>
-      <td>
-        <a href="{{ route('admin.projects.show', $project->id)}}" class="btn btn-small btn-primary">See Details</a>
+      <td class="d-flex">
+        <a href="{{ route('admin.projects.show', $project->id)}}" class="btn btn-small btn-primary mx-2"><i class="fa-solid fa-eye"></i></a>
+        <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-small btn-danger"><i class="fa-solid fa-trash"></i></button>
+        </form>
       </td>
     </tr>
     @empty
