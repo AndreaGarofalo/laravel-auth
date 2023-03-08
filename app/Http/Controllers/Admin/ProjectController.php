@@ -25,7 +25,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $project = new Project();
+
+        return view('admin.projects.create', compact('project'));
     }
 
     /**
@@ -43,7 +45,7 @@ class ProjectController extends Controller
         
         $project->save();
 
-        return to_route('admin.projects.show', $project->id);
+        return to_route('admin.projects.show', $project->id)->with('type', 'success')->with('msg', 'New project created');
     }
 
     /**
@@ -59,7 +61,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -67,7 +69,13 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $data = $request->all();
+
+        $data['slug'] = Str::slug($data['title'], '-');
+
+        $project->update($data);
+
+        return to_route('admin.projects.show', $project->id)->with('type', 'success')->with('msg', 'Project updated');
     }
 
     /**
