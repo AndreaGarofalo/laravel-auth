@@ -4,6 +4,6 @@
 
 @section('content')
 
-@include('includes.projects.form')
-
+    @include('includes.projects.form')
+    
 @endsection

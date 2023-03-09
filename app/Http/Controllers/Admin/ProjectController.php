@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 
 
@@ -35,6 +36,19 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|unique:projects|min:5|max:20',
+            'description' => 'required|string',
+            'screen' => 'nullable|url',
+        ],[
+            'title.required' => 'Title is mandatory',
+            'title.unique' => 'Title has to be different from other projects',
+            'title.min' => 'Title has to be min 5 caracters',
+            'title.max' => 'Title has to be max 20 caracters',
+            'description.required' => 'Description is mandatory',
+            'image.url' => 'Image url has to be valid',
+        ]);
+
         $data = $request->all();
 
         $project = new Project();
@@ -69,6 +83,19 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $request->validate([
+            'title' => ['required', 'string', Rule::unique('projects')->ignore($project->id), 'min:5', 'max:20'],
+            'description' => 'required|string',
+            'screen' => 'nullable|url',
+        ],[
+            'title.required' => 'Title is mandatory',
+            'title.unique' => 'Title has to be different from other projects',
+            'title.min' => 'Title has to be min 5 caracters',
+            'title.max' => 'Title has to be max 20 caracters',
+            'description.required' => 'Description is mandatory',
+            'image.url' => 'Image url has to be valid',
+        ]);
+
         $data = $request->all();
 
         $data['slug'] = Str::slug($data['title'], '-');

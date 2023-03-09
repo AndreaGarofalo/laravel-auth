@@ -30,6 +30,11 @@
 
         <main class="container">
             @include('includes.alert')
+
+            @auth
+                @include('includes.error-alert')
+            @endauth
+            
             @yield('content')
         </main>
     </div>
