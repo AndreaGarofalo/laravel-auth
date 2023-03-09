@@ -60,7 +60,7 @@
         </div>
     </form>
 
-@section('scripts')
+@section('script')
     <script>
         const slugInput = document.getElementById('slug');
         const titleInput = document.getElementById('title');
