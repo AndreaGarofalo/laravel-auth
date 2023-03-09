@@ -1,11 +1,11 @@
 @if($project->exists)
 
-    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
         
 @else
            
-    <form action="{{ route('admin.projects.store') }}" method="POST">
+    <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
 
 @endif
 
@@ -32,12 +32,8 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label for="screen" class="form-label">Screen</label>
-                    <input type="url" class="form-control @error('screen') is-invalid @enderror" id="screen" name="screen" value="{{ old('screen', $project->screen) }}">
-                    @error('screen')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @else
-                        <div class="text-muted">Insert screen url</div>
-                    @enderror
+                    <input type="file" class="form-control" id="screen" name="screen" >
+
                 </div>
             </div>
         </div>

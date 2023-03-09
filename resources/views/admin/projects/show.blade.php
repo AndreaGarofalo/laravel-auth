@@ -10,7 +10,7 @@
         <h5>Slug: {{ $project->slug }}</h5>
         <p class="mt-5">Description: {{ $project->description }}</p>
     </div>
-    <img src="{{ $project->screen }}" alt="{{ $project->slug }}">
+    <img class="img-fluid" src="{{ asset('storage/' . $project->screen) }}" alt="{{ $project->slug }}">
 </div>
 <div class="d-flex justify-content-between mt-5">
     <div class="text-danger"><strong>Created: {{ $project->created_at }}</strong></div>
