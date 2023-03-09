@@ -1,11 +1,11 @@
 @if($project->exists)
 
-    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" novalidate>
+    <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
     @method('PUT')
         
 @else
            
-    <form action="{{ route('admin.projects.store') }}" method="POST" novalidate>
+    <form action="{{ route('admin.projects.store') }}" method="POST">
 
 @endif
 
@@ -15,8 +15,12 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $project->title) }}" required minlength="5" maxlength="20">
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title', $project->title) }}" required minlength="5" maxlength="20">
+                    @error('title')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @else
                     <div class="text-muted">Insert title</div>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-6">
@@ -28,8 +32,12 @@
             <div class="col-md-12">
                 <div class="mb-3">
                     <label for="screen" class="form-label">Screen</label>
-                    <input type="url" class="form-control" id="screen" name="screen" value="{{ old('screen', $project->screen) }}">
-                    <div class="text-muted">Insert screen url</div>
+                    <input type="url" class="form-control @error('screen') is-invalid @enderror" id="screen" name="screen" value="{{ old('screen', $project->screen) }}">
+                    @error('screen')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @else
+                        <div class="text-muted">Insert screen url</div>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -37,8 +45,12 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" rows="3" name="description" required>{{ old('description', $project->description) }}</textarea>
-                    <div class="text-muted">Insert description</div>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3" name="description" required>{{ old('description', $project->description) }}</textarea>
+                    @error('description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @else
+                        <div class="text-muted">Insert description</div>
+                    @enderror
                 </div>
             </div>
         </div>
